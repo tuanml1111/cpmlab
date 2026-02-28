@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Form Sinh Vien</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-card {
+            max-width: 480px; border: 1px solid #ddd;
+            border-radius: 8px; padding: 24px; margin-top: 16px;
+        }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; margin-bottom: 6px;
+            font-weight: bold; color: #444;
+        }
+        .form-group input {
+            width: 100%; padding: 8px 10px; box-sizing: border-box;
+            border: 1px solid #ccc; border-radius: 4px; font-size: 14px;
+        }
+        .form-group input:focus { outline: none; border-color: #1a6fa6; }
+        .actions { display: flex; gap: 10px; margin-top: 20px; }
+        .btn {
+            padding: 8px 20px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block;
+        }
+        .btn-save { background-color: #1a6fa6; color: white; }
+        .btn-save:hover { background-color: #145480; }
+        .btn-cancel { background-color: #6c757d; color: white; }
+        .btn-cancel:hover { background-color: #4a5258; }
+    </style>
+</head>
+<body>
+
+<h1 th:text="${pageTitle}">Form Sinh Vien</h1>
+
+<div class="form-card">
+    <!-- formAction duoc truyen tu controller: /students (them moi) hoac /students/{id}/edit (sua) -->
+    <form th:action="${formAction}" method="POST">
+
+        <div class="form-group">
+            <label for="name">Ho va Ten</label>
+            <input type="text" id="name" name="name"
+                   th:value="${student.name}"
+                   placeholder="Nhap ho va ten..." required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"
+                   th:value="${student.email}"
+                   placeholder="Nhap dia chi email..." required />
+        </div>
+
+        <div class="form-group">
+            <label for="age">Tuoi</label>
+            <input type="number" id="age" name="age"
+                   th:value="${student.age}"
+                   placeholder="Nhap tuoi..." min="1" max="150" required />
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn btn-save">Luu</button>
+            <a href="/students" class="btn btn-cancel">Huy</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
