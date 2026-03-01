@@ -9,7 +9,6 @@ import vn.edu.hcmut.cse.adse.lab.service.StudentService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/students")
 public class StudentWebController {
 
     private static final String STUDENT_ATTR = "student";
@@ -21,8 +20,14 @@ public class StudentWebController {
         this.service = service;
     }
 
+    // GET / - Redirect ve trang danh sach
+    @GetMapping("/")
+    public String root() {
+        return REDIRECT_LIST;
+    }
+
     // GET /students - Trang danh sach co tim kiem
-    @GetMapping
+    @GetMapping("/students")
     public String listStudents(@RequestParam(required = false) String keyword, Model model) {
         List<Student> students;
         if (keyword != null && !keyword.isEmpty()) {
@@ -36,7 +41,7 @@ public class StudentWebController {
     }
 
     // GET /students/new - Hien thi form them moi
-    @GetMapping("/new")
+    @GetMapping("/students/new")
     public String showCreateForm(Model model) {
         model.addAttribute(STUDENT_ATTR, new Student());
         model.addAttribute("formAction", "/students");
@@ -45,14 +50,14 @@ public class StudentWebController {
     }
 
     // POST /students - Luu sinh vien moi
-    @PostMapping
+    @PostMapping("/students")
     public String createStudent(@ModelAttribute Student student) {
         service.save(student);
         return REDIRECT_LIST;
     }
 
     // GET /students/{id} - Trang chi tiet sinh vien
-    @GetMapping("/{id}")
+    @GetMapping("/students/{id}")
     public String showDetail(@PathVariable Long id, Model model) {
         Student student = service.getById(id);
         if (student == null) {
@@ -63,7 +68,7 @@ public class StudentWebController {
     }
 
     // GET /students/{id}/edit - Hien thi form chinh sua
-    @GetMapping("/{id}/edit")
+    @GetMapping("/students/{id}/edit")
     public String showEditForm(@PathVariable Long id, Model model) {
         Student student = service.getById(id);
         if (student == null) {
@@ -76,7 +81,7 @@ public class StudentWebController {
     }
 
     // POST /students/{id}/edit - Luu cap nhat sinh vien
-    @PostMapping("/{id}/edit")
+    @PostMapping("/students/{id}/edit")
     public String updateStudent(@PathVariable Long id, @ModelAttribute Student student) {
         student.setId(id);
         service.save(student);
@@ -84,7 +89,7 @@ public class StudentWebController {
     }
 
     // POST /students/{id}/delete - Xoa sinh vien
-    @PostMapping("/{id}/delete")
+    @PostMapping("/students/{id}/delete")
     public String deleteStudent(@PathVariable Long id) {
         service.deleteById(id);
         return REDIRECT_LIST;
