@@ -94,7 +94,7 @@ POST /students/{id}/delete Xoá sinh viên
 
 ## Câu Trả Lời Lý Thuyết
 
-### Lab 1: Khởi Tạo & Kiến Trúc
+### Lab 1
 
 **Câu 2 — Ràng buộc Khóa Chính (Primary Key): Tại sao Database lại chặn thao tác INSERT khi `id` trùng?**
 
