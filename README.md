@@ -5,7 +5,7 @@ Lê Minh Tuấn - 2252868
 
 ## Public URL
 
-> Web Service đã được deploy tại:
+> Web Service đã được deploy tại: https://studentmanagelab.onrender.com/students
 
 
 
@@ -68,6 +68,9 @@ docker run -p 8080:8080 \
   -e DB_USERNAME=postgres \
   -e DB_PASSWORD=your_password \
   student-management
+```
+
+---
 
 ## API Endpoints
 
@@ -109,11 +112,25 @@ POST /students/{id}/delete Xoá sinh viên
 
 **Câu 4 — Cấu hình Hibernate: Tại sao mỗi lần chạy lại ứng dụng, dữ liệu cũ bị mất hết?**
 
-> Nguyên nhân nằm ở cấu hình sau trong `application.properties`:
-
-```properties
-spring.jpa.hibernate.ddl-auto=create
-```
+> Nguyên nhân nằm ở cấu hình sau trong `application.properties`: spring.jpa.hibernate.ddl-auto=create
 
 > Với giá trị `create`, mỗi khi ứng dụng Spring Boot khởi động, Hibernate sẽ **DROP toàn bộ bảng cũ** rồi **tạo lại từ đầu** dựa trên các Entity class. Điều này có nghĩa là mọi dữ liệu đã tồn tại trong file `student.db` đều bị xóa sạch.
 
+---
+
+## Screenshot Các Module
+
+### Trang Chủ — Danh Sách Sinh Viên
+![Trang chủ](UI/trangchu.png)
+
+### Thêm Sinh Viên Mới
+![Thêm sinh viên](UI/themsinhvien.png)
+
+### Xem Chi Tiết Sinh Viên
+![Xem chi tiết sinh viên](UI/xemchitietsinhvien.png)
+
+### Chỉnh Sửa Sinh Viên
+![Chỉnh sửa sinh viên](UI/chinhsuasinhvien.png)
+
+### Xoá Sinh Viên
+![Xoá sinh viên](UI/xoasinhvien.png)
